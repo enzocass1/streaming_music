@@ -6,11 +6,11 @@
     <title>Audio Stream Player</title>
 </head>
 <body>
-    <h1>Audio Stream Player (OGG)</h1>
+    <h1>Enzo C. Dj Radio</h1>
 
-    <!-- Pulsante per aprire in VLC -->
+    <!-- Pulsante per aprire in VLC o reindirizzare allo streaming -->
     <p>
-        <button onclick="openInVLC()">Ascolta su VLC</button>
+        <button onclick="tryOpenStream()">Ascolta lo streaming</button>
     </p>
 
     <!-- Messaggio per il download di VLC, sempre visibile -->
@@ -28,15 +28,14 @@
     </div>
 
     <script>
-        function openInVLC() {
+        function tryOpenStream() {
             const streamUrl = "http://uk22freenew.listen2myradio.com:13264/stream.ogg";
-            const vlcUrl = `vlc://${streamUrl}`;
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
             
-            // Prova ad aprire lo streaming in VLC
-            window.location.href = vlcUrl;
+            // Prova ad aprire il flusso direttamente
+            window.location.href = streamUrl;
 
-            // Timeout per reindirizzare in caso VLC non sia installato
+            // Timeout per reindirizzare in caso VLC non sia impostato per aprire automaticamente il flusso
             setTimeout(() => {
                 if (/android/i.test(userAgent)) {
                     // Reindirizza al Play Store su Android
