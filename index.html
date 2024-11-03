@@ -6,10 +6,30 @@
     <title>OGG Audio Stream</title>
 </head>
 <body>
-    <h1>Audio Stream Player Vincenzo (OGG)</h1>
-    <audio controls>
-        <source src="http://uk22freenew.listen2myradio.com:13264/stream.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
+    <h1>Audio Stream Player (OGG)</h1>
+    
+    <!-- Pulsanti per controllare il player -->
+    <button onclick="playStream()">Play</button>
+    <button onclick="pauseStream()">Pause</button>
+
+    <!-- Inclusione di Howler.js per la gestione dello streaming audio OGG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script>
+        // Configurazione del lettore Howler per lo streaming OGG
+        var sound = new Howl({
+            src: ['http://uk22freenew.listen2myradio.com:13264/stream.ogg'],
+            format: ['ogg']
+        });
+
+        // Funzione per avviare lo streaming
+        function playStream() {
+            sound.play();
+        }
+
+        // Funzione per mettere in pausa lo streaming
+        function pauseStream() {
+            sound.pause();
+        }
+    </script>
 </body>
 </html>
