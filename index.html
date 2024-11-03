@@ -6,17 +6,16 @@
     <title>Audio Stream Player</title>
 </head>
 <body>
-    <h1>Enzo C. Dj Radio</h1>
-    
-    <!-- Lettore audio -->
-    <audio id="audioPlayer" controls>
-        <source src="http://uk22freenew.listen2myradio.com:13264/stream.ogg" type="audio/ogg">
-        Il tuo browser non supporta l'elemento audio.
-    </audio>
+    <h1>Audio Stream Player (OGG)</h1>
+
+    <!-- Pulsante per aprire in VLC -->
+    <p>
+        <button onclick="openInVLC()">Ascolta su VLC</button>
+    </p>
 
     <!-- Messaggio per il download di VLC, sempre visibile -->
     <div id="vlcDownload" style="margin-top: 20px;">
-        <p>Se l'audio non viene riprodotto, ti consigliamo di scaricare VLC per ascoltare lo streaming.</p>
+        <p>Se VLC non è installato, puoi scaricarlo qui:</p>
         <p>
             <span id="androidLink">
                 <a href="https://play.google.com/store/apps/details?id=org.videolan.vlc&hl=it" target="_blank">Scarica VLC per Android</a>
@@ -27,5 +26,30 @@
             </span>
         </p>
     </div>
+
+    <script>
+        function openInVLC() {
+            const streamUrl = "http://uk22freenew.listen2myradio.com:13264/stream.ogg";
+            const vlcUrl = `vlc://${streamUrl}`;
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // Prova ad aprire lo streaming in VLC
+            window.location.href = vlcUrl;
+
+            // Timeout per reindirizzare in caso VLC non sia installato
+            setTimeout(() => {
+                if (/android/i.test(userAgent)) {
+                    // Reindirizza al Play Store su Android
+                    window.location.href = "https://play.google.com/store/apps/details?id=org.videolan.vlc&hl=it";
+                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    // Reindirizza all'App Store su iOS
+                    window.location.href = "https://apps.apple.com/it/app/vlc-media-player/id650377962";
+                } else {
+                    // Messaggio generico per altri dispositivi
+                    alert("VLC non sembra essere installato. Scaricalo dal sito ufficiale.");
+                }
+            }, 3000); // Attesa di 3 secondi per verificare se VLC è installato
+        }
+    </script>
 </body>
 </html>
