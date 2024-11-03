@@ -14,38 +14,18 @@
         Il tuo browser non supporta l'elemento audio.
     </audio>
 
-    <!-- Messaggio di errore e suggerimento per scaricare VLC -->
-    <div id="vlcDownload" style="display: none; margin-top: 20px;">
+    <!-- Messaggio per il download di VLC, sempre visibile -->
+    <div id="vlcDownload" style="margin-top: 20px;">
         <p>Se l'audio non viene riprodotto, ti consigliamo di scaricare VLC per ascoltare lo streaming.</p>
         <p>
-            <span id="androidLink" style="display: none;">
+            <span id="androidLink">
                 <a href="https://play.google.com/store/apps/details?id=org.videolan.vlc&hl=it" target="_blank">Scarica VLC per Android</a>
             </span>
-            <span id="iosLink" style="display: none;">
+            <br>
+            <span id="iosLink">
                 <a href="https://apps.apple.com/it/app/vlc-media-player/id650377962" target="_blank">Scarica VLC per iOS</a>
             </span>
         </p>
     </div>
-
-    <script>
-        // Funzione per controllare se l'audio viene riprodotto
-        const audioPlayer = document.getElementById('audioPlayer');
-        const vlcDownload = document.getElementById('vlcDownload');
-        const androidLink = document.getElementById('androidLink');
-        const iosLink = document.getElementById('iosLink');
-
-        // Verifica la riproduzione dell'audio
-        audioPlayer.addEventListener('error', function() {
-            // Mostra il messaggio di download di VLC se c'è un errore nella riproduzione
-            vlcDownload.style.display = 'block';
-
-            // Controlla il sistema operativo e mostra il link corretto
-            if (/Android/i.test(navigator.userAgent)) {
-                androidLink.style.display = 'inline';
-            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                iosLink.style.display = 'inline';
-            }
-        });
-    </script>
 </body>
 </html>
