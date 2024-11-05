@@ -3,52 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Stream Player</title>
+    <title>Shoutcast MP3 Player</title>
 </head>
 <body>
-    <h1>Enzo C. Dj Radio</h1>
+    <h1>Shoutcast MP3 Player</h1>
 
-    <!-- Pulsante per aprire in VLC o reindirizzare allo streaming -->
-    <p>
-        <button onclick="tryOpenStream()">Ascolta lo streaming</button>
-    </p>
+    <!-- Lettore audio HTML5 per il flusso Shoutcast MP3 -->
+    <audio controls autoplay>
+        <source src="http://uk15freenew.listen2myradio.com:39762/;stream.mp3" type="audio/mpeg">
+        Il tuo browser non supporta l'elemento audio.
+    </audio>
 
-    <!-- Messaggio per il download di VLC, sempre visibile -->
-    <div id="vlcDownload" style="margin-top: 20px;">
-        <p>Se VLC non è installato, puoi scaricarlo qui:</p>
-        <p>
-            <span id="androidLink">
-                <a href="https://play.google.com/store/apps/details?id=org.videolan.vlc&hl=it" target="_blank">Scarica VLC per Android</a>
-            </span>
-            <br>
-            <span id="iosLink">
-                <a href="https://apps.apple.com/it/app/vlc-media-player/id650377962" target="_blank">Scarica VLC per iOS</a>
-            </span>
-        </p>
-    </div>
-
-    <script>
-        function tryOpenStream() {
-            const streamUrl = "http://uk22freenew.listen2myradio.com:13264/stream.ogg";
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // Prova ad aprire il flusso direttamente
-            window.location.href = streamUrl;
-
-            // Timeout per reindirizzare in caso VLC non sia impostato per aprire automaticamente il flusso
-            setTimeout(() => {
-                if (/android/i.test(userAgent)) {
-                    // Reindirizza al Play Store su Android
-                    window.location.href = "https://play.google.com/store/apps/details?id=org.videolan.vlc&hl=it";
-                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                    // Reindirizza all'App Store su iOS
-                    window.location.href = "https://apps.apple.com/it/app/vlc-media-player/id650377962";
-                } else {
-                    // Messaggio generico per altri dispositivi
-                    alert("VLC non sembra essere installato. Scaricalo dal sito ufficiale.");
-                }
-            }, 3000); // Attesa di 3 secondi per verificare se VLC è installato
-        }
-    </script>
+    <p>Se l'audio non si avvia, prova ad aprire <a href="http://uk15freenew.listen2myradio.com:39762/;stream.mp3" target="_blank">questo link</a> in un lettore compatibile come VLC.</p>
 </body>
 </html>
